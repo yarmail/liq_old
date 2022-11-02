@@ -1,0 +1,28 @@
+Создаем для тестирования следующие классы
+src/main/java/project/Item.java
+src/main/java/project/Dao.java
+
+и тестировочный класс
+src/test/java/project/IntegrationTest.java
+
+Тестировать можно по-разному
+
+1. Через консоль
+mvn test -Ptest
+
+test это профиль. Можно указать другой, например production.
+В этом случае ключ будет -Pproduction
+
+2. IDEA. Справа в боковой вкладке Maven можете
+включить профиль, поставив галочку на нужный.
+Далее как обычно можно запускать команды с помощью этой панели.
+Профиль будет приписываться автоматически.
+
+3. Также можно попробовать сделать для профиля production
+Запускаем сборку. Теперь инициализация
+будет происходить в БД PostgreSQL
+
+mvn install -Pproduction -Dmaven.test.skip=true
+Если получаете ошибку(получаю), попробуйте
+
+mvn install -Pproduction -DskipTests=true

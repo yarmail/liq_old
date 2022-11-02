@@ -1,0 +1,1 @@
+alter table items drop column if exists checked;

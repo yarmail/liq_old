@@ -1,0 +1,18 @@
+Подготовительные работы
+
+Создаем простой Maven проект.
+Используем простой архитип quickstart
+
+Копируем, проверяем или создаем
+.gitignore и README.md
+в корне проекта
+
+
+Примечание
+Чтобы файл настроек адекватно относился к русскому языку
+я изменяю кодировку файлов .properties
+Для этого я изменил следующую настройку:
+File - Settings - Editor - File Encodings
+Default encoding for properties files:
+Было: Properties Default: ISO-8859-1
+Стало: UTF-8

@@ -1,0 +1,30 @@
+Свойства Liquibase должны находится
+в файле liquibase.properties
+
+В пом указан адрес:
+<propertyFile>db/liquibase.properties</propertyFile>
+
+В файле указываем настройки подключения
+к бд и файл в котором мы будем прописывать
+скрипты
+
+changeLogFile: db/dbchangelog.xml
+url: jdbc:postgresql://localhost:5432/liq_old_db
+username: postgres
+password: password
+
+---
+
+Создаем файл
+db/dbchangelog.xml.
+В этом файле мы будет добавлять пути к файлам со скриптами.
+Например scripts/update_001.sql
+
+---
+
+Создаем папку db/scripts и в ней скрипт update_001.sql.
+create table if not exists items (
+  id serial primary key,
+  name text,
+  created timestamp
+);

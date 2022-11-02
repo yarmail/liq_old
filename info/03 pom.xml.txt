@@ -1,0 +1,31 @@
+Подключаем необходимые компоненты в pom.xml
+
+Подключаем в пом плагин Liquibase
+
+
+   <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>4.15.0</version>
+                <configuration>
+                    <propertyFile>db/liquibase.properties</propertyFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+Замечаем, что свойства  Liquibase
+должны находится в корне проекта по адресу
+<propertyFile>db/liquibase.properties</propertyFile>
+
+Также, для работы проекта с базой данных подключаем
+драйвер PostgreSQL
+
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.4.2</version>
+</dependency>

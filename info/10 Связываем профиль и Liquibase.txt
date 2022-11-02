@@ -1,0 +1,47 @@
+Связываем профиль и Liquibase
+
+Теперь нужно связать профиль и liquibase.
+Для этого в плагине liquibase указываем переменную окружения liquibase.config.
+
+
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>4.15.0</version>
+                <configuration>
+                    <propertyFile>${liquibase.config}</propertyFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>clearCheckSums</goal>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+Пояснения:
+- путь к артефакту обычный: groupId, artifactId, version,
+ как и для всех зависимостей;
+
+- в секции configuration
+используется переменная liquibase.config, в которой
+указывается путь к файлу с указанием путей к скриптам dbchangelog.xml.
+Эта переменная  будет принимать значение в зависимости
+от выбранного профиля в секции Профиль
+В зависимости от профиля будет загружаться
+либо тестовое окружение, либо промышленное.
+
+ - в секции executions указывается на какой фазе (phase)
+ сборки запускать плагин и что он делает (goal).
+ В данном случае плагин запускается на этапе подготовки ресурсов,
+ т.е. когда копируются *.properties файлы в target.
+ У плагина две задачи. Во-первых, он удаляет контрольные суммы,
+ которые Liquibase использует для сравнения схем БД.
+ Удалять нам нужно эти суммы, чтобы не было ошибок
+ при повторном запуске тестов. Во-вторых, выполняет обновление
+ схемы БД, т.е. выполняет скрипт update_001.sql,
+ который мы прописали в dbchangelog.xml.

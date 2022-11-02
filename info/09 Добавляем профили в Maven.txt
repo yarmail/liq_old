@@ -1,0 +1,32 @@
+Добавляем профили в Maven
+
+Отделяем работу в обычной среде и в тестовой
+Добавляем профили в pom.xml
+
+
+    <profiles>
+        <profile>
+            <id>test</id>
+            <properties>
+                <liquibase.config>db/liquibase_test.properties</liquibase.config>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <liquibase.config>db/liquibase.properties</liquibase.config>
+            </properties>
+        </profile>
+    </profiles>
+
+
+Пояснения:
+
+В данном коде, мы видим два профиля - test и production.
+Один будет использоваться для тестов, другой при работе с пользователем.
+В режиме test переменная liquibase.config = db/liquibase_test.properties
+В режиме production переменная liquibase.config = db/liquibase.properties
+
